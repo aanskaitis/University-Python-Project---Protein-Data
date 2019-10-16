@@ -1,10 +1,10 @@
 import argparse
-import gzip
-from Bio import SeqIO
+from . import parse
+
+LOC="uniprot_receptor.xml.gz"
 
 def dump(args):
-    handle = gzip.open("uniprot_receptor.xml.gz")
-    for record in SeqIO.parse(handle, "uniprot-xml"):
+    for record in parse.uniprot_seqrecords(LOC):
         print(record)
 
 def names(args):
