@@ -8,3 +8,5 @@ def plot_bar_show(d):
     plt.xticks(r, d.keys())
     plt.tight_layout()
     plt.show()
+
+## Eukaryota, Viruses, Bacteria, Archaea
