@@ -9,4 +9,15 @@ def plot_bar_show(d):
     plt.tight_layout()
     plt.show()
 
-## Eukaryota, Viruses, Bacteria, Archaea
+
+def plot_pie_show(d):
+    labels = d.keys()
+    sizes = d.values()
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    ax1.axis('equal')
+    plt.show()
+
+
