@@ -23,11 +23,11 @@ def names(args):
 
 def plot_average_by_taxa(args):
     """This function shows the bar chart of the average length of lists in set in different groups"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.path), depth)
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.path), args.depth)
     plot.plot_bar_show(av)
 
 def plot_pie_average_by_taxa(args):
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.path), depth)
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.path), args.depth)
     plot.plot_pie_show(av)
 
 
@@ -45,6 +45,7 @@ def cli():
     subparsers.add_parser("plot-average-by-taxa",help="To show the bar chart of average length of proteins sequences by taxa").set_defaults(func=plot_average_by_taxa)
     subparsers.add_parser("plot-pie-average-by-taxa",help="To show the pie chart of average length of proteins sequences by taxa").set_defaults(func=plot_pie_average_by_taxa)
 
+    ## Add arguments
     parser.add_argument("path",type=str,help="To specify a file location")
     parser.add_argument("depth",help="To specify depth for the bar or pie chart",default=1)
 
