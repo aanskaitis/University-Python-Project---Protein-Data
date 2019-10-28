@@ -3,32 +3,30 @@ from . import parse
 from . import plot
 from . import analysis
 
-LOC="uniprot_receptor.xml.gz"
-
 def average(args):
     """This function prints the average length length of lists in set"""
     print("Average length is {}".format(
-        analysis.average_len(parse.uniprot_seqrecords(LOC))
+        analysis.average_len(parse.uniprot_seqrecords(args.location))
     ))
 
 def dump(args):
     """This function prints out all the records"""
-    for record in parse.uniprot_seqrecords(LOC):
+    for record in parse.uniprot_seqrecords(args.location):
         print(record)
 
 def names(args):
     """This function prints out all names of the records"""
-    for record in parse.uniprot_seqrecords(LOC):
+    for record in parse.uniprot_seqrecords(args.location):
         print(record.name)
 
 def plot_average_by_taxa(args):
     """This function shows the bar chart of the average length of different proteins by taxa"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC), input("Choose depth = "))
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.location), input("Choose depth = "))
     plot.plot_bar_show(av)
 
 def plot_pie_average_by_taxa(args):
     """This function shows the pie chart of the average length of different proteins by taxa"""
-    av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC),input("Choose depth = "))
+    av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.location),input("Choose depth = "))
     plot.plot_pie_show(av)
 
 
@@ -50,6 +48,7 @@ def cli():
                                                           "You have to choose the depth of taxa, write 1 for default and 2 for more detailed.")\
         .set_defaults(func=plot_pie_average_by_taxa)
 
+    parser.add_argument("location",help="Specify the file location", type=str)
     ## Parse the command line
     args = parser.parse_args()
 
